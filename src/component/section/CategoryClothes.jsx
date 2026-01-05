@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "./CategoryClothes.css"; // import CSS
+import "./categoryClothes.css"; // import CSS
 
 const CategoryClothes = () => {
   const { category } = useParams();
