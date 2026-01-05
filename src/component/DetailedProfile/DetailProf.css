@@ -1,0 +1,138 @@
+.product-detail-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  background: #f5f7fa;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+}
+
+.product-detail-box {
+  display: flex;
+  flex-direction: row;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  overflow: hidden;
+  width: 900px;
+  padding: 20px;
+  gap: 30px;
+}
+
+/* LEFT: Image */
+.product-images {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.product-images .main-image {
+  width: 100%;
+  max-width: 380px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+/* RIGHT: Info */
+.product-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  /* border: 1px solid black; */
+ 
+}
+
+.product-name {
+    display: flex;
+   /* flex-direction: row; */
+   justify-content: center;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #222;
+  /* background-color: red; */
+    /* border: 1px solid black; */
+}
+.product-catogory{
+  display: flex;
+  flex-direction: column;
+  
+ 
+
+}
+.pro-det {
+  display: flex;
+  gap: 8px;               /* space between label and value */
+  margin-bottom: 6px;     /* small spacing between rows */
+  align-items: center;
+}
+
+.pro-det strong {
+  min-width: 80px;         /* optional (makes labels aligned in one column) */
+  font-weight: 600;
+}
+
+
+
+
+
+.price {
+  font-size: 1.3rem;
+  color: #1a73e8;
+  font-weight: 600;
+    /* border: 1px solid black; */
+}
+
+/* Color Selector */
+.color-section {
+  margin: 10px 0;
+}
+.color-options {
+  display: flex;
+  gap: 8px;
+  margin-top: 5px;
+}
+.color-circle {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #ccc;
+  transition: 0.3s;
+}
+.color-circle.selected {
+  border: 3px solid #1a73e8;
+  transform: scale(1.1);
+}
+
+/* Buttons */
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+}
+.add-btn, .buy-btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.add-btn {
+  background: #eaeaea;
+}
+.add-btn:hover {
+  background: #d6d6d6;
+}
+.buy-btn {
+  background: #1a73e8;
+  color: white;
+}
+.buy-btn:hover {
+  background: #0d5fd1;
+}

@@ -1,0 +1,71 @@
+.wear-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4rem 6rem;
+  background-color: #f9f9f9;
+  gap: 2rem;
+}
+
+.wear-content {
+  flex: 1;
+}
+
+.wear-content h2 {
+    display: flex;
+    justify-content: start;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+.wear-content p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  color: #555;
+}
+
+.wear-content button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+.wear-content button:hover {
+  background-color: #333;
+}
+
+.wear-image {
+  flex: 1.2;
+}
+
+.wear-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive design */
+@media (max-width: 900px) {
+  .wear-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+
+  .wear-content {
+    order: 2;
+  }
+
+  .wear-image {
+    order: 1;
+  }
+}

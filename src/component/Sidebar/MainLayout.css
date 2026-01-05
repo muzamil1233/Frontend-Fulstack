@@ -1,0 +1,22 @@
+.layout {
+  display: flex;
+}
+
+/* Main section next to sidebar */
+.layout-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Content below Topbar */
+.layout-content {
+  padding: 20px;
+  margin-top: 60px; /* height of Topbar */
+  transition: margin-left 0.3s ease;
+}
+
+/* Adjust when sidebar is collapsed */
+.sidebar.collapsed + .layout-main .layout-content {
+  margin-left: 70px; /* optional if you want content to shift */
+}

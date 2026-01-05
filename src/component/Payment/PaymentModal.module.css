@@ -1,0 +1,102 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  width: 900px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  height: 40px;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  background-color: #22c55e;
+}
+
+.backBtn,
+.closeBtn {
+  font-size: medium;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.left, .right {
+  padding: 10px;
+}
+.row1{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* flex-wrap: nowrap; */
+  /* margin:8px 0 ; */
+  /* background-color: red; */
+ 
+}
+.name{
+  display: flex;
+  justify-content: end;
+  width: 250px;
+
+  /* background-color: #22c55e; */
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 0;
+
+}
+
+.status {
+  display: flex;
+  justify-content: end;
+  margin-top: 20px;
+  background: #22c55e;
+  color: white;
+  padding: 6px 12px;
+  width: fit-content;
+  border-radius: 20px;
+}
+
+.billRow {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  background: #f3f4ff;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.paymentOptions {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cardInput {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
