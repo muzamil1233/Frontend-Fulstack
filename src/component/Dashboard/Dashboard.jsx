@@ -3,7 +3,7 @@ import Topbar from '../Header/Topbar';
 import HeroSection from '../HeroSection/HeroSection';
 import Main from '../MainSection/Main';
 import SubMain from '../SubMainSection/SubMain';
-import Section from '../section/Section';
+import Section from '../Section/Section';
 import Footer from '../Footer/Footer';
 
 const Dashboard = () => {

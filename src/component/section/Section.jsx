@@ -1,5 +1,5 @@
 import React from "react";
-import "../section/Section.css";
+import "./Section.css";
 import manImg from "../../assets/man.jpg";
 import womanImg from "../../assets/woman.webp";
 import kidsImg from "../../assets/kids.webp";

@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./component/Login";
 import Signup from "./component/Signup";
 import Dashboard from "./component/Dashboard/Dashboard";
-import CategoryClothes from "./component/section/CategoryClothes";
+import CategoryClothes from "./component/Section/CategoryClothes";
 import MainLayout from "./component/Sidebar/MainLayout";
 import Admin from "./component/Admin";
 import AdminDashboard from "./component/AdminDashboard/AdminDashboard";
