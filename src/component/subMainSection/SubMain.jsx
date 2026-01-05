@@ -1,5 +1,5 @@
 import React from "react";
-import "../subMainSection/subMain.css";
+import   "./subMain.css";
 import backgroundImage from "../../assets/backgrounding.jpg"
 
 
