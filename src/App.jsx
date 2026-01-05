@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./component/Login";
-import Signup from "./component/SignUp";
+import Signup from "./component/Signup";
 import Dashboard from "./component/Dashboard/Dashboard";
 import CategoryClothes from "./component/section/CategoryClothes";
 import MainLayout from "./component/Sidebar/MainLayout";
@@ -16,7 +16,7 @@ function App() {
       <Routes>
         {/* Public pages */}
         <Route path="/" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/Signup" element={<Signup />} />
 
         {/* Private / layout pages */}
         <Route
