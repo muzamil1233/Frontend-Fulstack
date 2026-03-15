@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../component/Signup.css";
+import { BASE_URL } from "../api/baseUrl";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -17,8 +18,8 @@ const Signup = () => {
       // Select endpoint based on chosen role
       const endpoint =
         role === "admin"
-          ? "http://localhost:8000/api/admin/signup"
-          : "http://localhost:8000/api/user/signup";
+          ? `${BASE_URL}/api/admin/signup`
+          : `${BASE_URL}/api/user/signup`;
 
       const res = await fetch(endpoint, {
         

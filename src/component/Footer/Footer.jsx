@@ -21,7 +21,7 @@ const Footer = () => {
     setStatus("Sending...");
 
     try {
-      const response = await fetch("http://localhost:8000/api/query/sendquery", {
+      const response = await fetch(`${BASE_URL}/api/query/sendquery`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

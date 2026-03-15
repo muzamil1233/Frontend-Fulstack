@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./DetailProf.css";
+import { BASE_URL } from "../../api/baseUrl";
 
 const DetailProf = () => {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ const DetailProf = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await fetch(`http://localhost:8000/api/cloth/getCloth/${id}`, {
+        const res = await fetch(`${BASE_URL}/api/cloth/getCloth/${id}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
@@ -42,7 +43,7 @@ useEffect(() => {
         return;
       }
 
-     const res = await fetch(`http://localhost:8000/api/Bag/getbag/${userId}`, {
+     const res = await fetch(`${BASE_URL}/api/Bag/getbag/${userId}`, {
   headers: {
     Authorization: `Bearer ${token}`,
   },
@@ -74,7 +75,7 @@ useEffect(() => {
   }
   setLoading(true);
   try {
-    const response = await fetch("http://localhost:8000/api/Bag/", {
+    const response = await fetch(`${BASE_URL}/api/Bag/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -127,7 +128,7 @@ const handleQuantityChange = async (itemId, delta) => {
   try {
     const token = localStorage.getItem("token");
 
-    await fetch(`http://localhost:8000/api/Bag/patchBag/${itemId}`, {
+    await fetch(`${BASE_URL}/api/Bag/patchBag/${itemId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -154,7 +155,7 @@ const handleQuantityChange = async (itemId, delta) => {
         <div className="product-images">
             
           <img
-            src={`http://localhost:8000${product.images?.[0]}`}
+            src={`${BASE_URL}${product.images?.[0]}`}
             alt={product.name}
             className="main-image"
           />

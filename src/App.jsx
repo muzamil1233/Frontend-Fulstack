@@ -12,6 +12,7 @@ import Payment from "./component/Payment/Payment";
 
 function App() {
   return (
+    
     <Router>
       <Routes>
         {/* Public pages */}

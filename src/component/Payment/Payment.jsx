@@ -11,7 +11,7 @@ const Payment = () => {
   const fetchData = async () => {
     try {
       const res = await fetch(
-        `http://localhost:8000/api/cloth/getCloth/${id}`,
+        `${BASE_URL}/api/cloth/getCloth/${id}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,

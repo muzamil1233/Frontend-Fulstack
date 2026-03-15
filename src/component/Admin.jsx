@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./Admin.css";
+import { BASE_URL } from "../api/baseUrl";
 
 const Admin = () => {
   const { id } = useParams(); // ✅ edit mode if ID exists
@@ -110,8 +111,8 @@ const Admin = () => {
     selectedImages.forEach((img) => data.append("images", img));
 
     const url = id
-      ? `http://localhost:8000/api/cloth/EditClothes/${id}`
-      : `http://localhost:8000/api/cloth/AddCloths`;
+      ? `${BASE_URL}/api/cloth/EditClothes/${id}`
+      : `${BASE_URL}/api/cloth/AddCloths`;
 
     const method = id ? "PUT" : "POST";
 
@@ -130,7 +131,7 @@ const Admin = () => {
         if (result.data?.images?.length > 0) {
           const uploadedURLs = result.data.images.map((imgPath) => {
             const cleanPath = imgPath.replace(/^\/+/, "").replace(/\\/g, "/");
-            return `http://localhost:8000/${cleanPath}`;
+            return `${BASE_URL}/${cleanPath}`;
           });
           setUploadedImages(uploadedURLs);
         }

@@ -29,7 +29,7 @@ useEffect(() => {
   const fetchClothes = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/cloth/getClothes`,
+        `${BASE_URL}/api/cloth/getClothes`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -57,7 +57,7 @@ useEffect(() => {
     if (!confirmDelete) return;
 
     try {
-      const response = await fetch(`http://localhost:8000/api/cloth/deleteClothes/${id}`, {
+      const response = await fetch(`${BASE_URL}/api/cloth/deleteClothes/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -97,7 +97,7 @@ useEffect(() => {
           {currentProducts.map((item) => (
             <div key={item._id} className="clothes-card">
               <img
-  src={`http://localhost:8000${item.images?.[0]}`}
+  src={`${BASE_URL}${item.images?.[0]}`}
   alt={item.name}
   className="clothes-img"
 />

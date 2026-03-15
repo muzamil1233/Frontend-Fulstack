@@ -14,7 +14,7 @@ const Main = () => {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8000/api/cloth/getClothes",
+          `${BASE_URL}/api/cloth/getClothes`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -46,7 +46,7 @@ const Main = () => {
            onClick={() => navigate(`/detailprof/${product._id}`)}
            >
              <img
-        src={`http://localhost:8000${product.images?.[0]}`}
+        src={`${BASE_URL}${product.images?.[0]}`}
         alt={product.name}
         style={{ width: "100%", height: "250px", objectFit: "cover" }}
       />

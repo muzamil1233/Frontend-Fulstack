@@ -30,7 +30,7 @@ useEffect(() => {
       return;}
 
     try {
-      const response = await fetch("http://localhost:8000/api/Bag/count", {
+      const response = await fetch(`${BASE_URL}/api/Bag/count`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await response.json();

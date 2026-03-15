@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../component/Login.css";
 import { Link, useNavigate } from "react-router-dom";
+import { BASE_URL } from "../api/baseUrl";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -19,8 +20,8 @@ const Login = () => {
   try {
     const endpoint =
       role === "admin"
-        ? "http://localhost:8000/api/admin/signIn"
-        : "http://localhost:8000/api/user/login";
+        ? `${BASE_URL}/api/admin/signIn`
+        : `${BASE_URL}/api/user/login`;
 
     const res = await fetch(endpoint, {
       method: "POST",

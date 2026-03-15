@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./categoryClothes.css"; // import CSS
+import { BASE_URL } from "../../api/baseUrl";
 
 const CategoryClothes = () => {
   const { category } = useParams();
@@ -12,7 +13,7 @@ const CategoryClothes = () => {
     const fetchClothes = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8000/api/cloth/getClothes/catogory/${category}`,
+          `${BASE_URL}/api/cloth/getClothes/catogory/${category}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -55,7 +56,7 @@ const CategoryClothes = () => {
           {clothes.map((item) => (
             <div key={item._id} className="clothes-card">
               <img
-  src={`http://localhost:8000${item.images?.[0]}`}
+  src={`${BASE_URL}${item.images?.[0]}`}
   alt={item.name}
   className="clothes-img"
 />
