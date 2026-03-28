@@ -1,40 +1,61 @@
 .hero-section {
-    
   display: flex;
+  justify-content: center;
   width: 100%;
   flex-wrap: wrap;
-  /* position: relative; */
-  margin-top: 0;
-  /* align-items: center; */
   justify-content: space-between;
   padding: 2rem;
-  background-image: url("../../assets/Brand.jpg");
-  background-size: cover;
-  /* background-color: #fefefe; */
-  background-color: palegoldenrod;
+
+  background-image: url("../../assets/image2.webp"); /* ✅ verify this path */
+  background-size: cover;       /* covers full area */
+  background-position: center;  /* ✅ ADD THIS — centers the image */
+  background-repeat: no-repeat; /* ✅ ADD THIS — prevents tiling */
+  /* background-color: palegoldenrod; acts as fallback only if image fails */
+  background-color: aqua;
+
+  min-height: 100vh; /* ✅ ADD THIS — gives section height to show the image */
+
 }
 
 .hero-content {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: end;
+  /* flex: 1; */
   min-width: 300px;
+  margin-left: 10%;
   padding: 1rem;
+  /* background-color: black; */
 }
 
 .hero-content h1 {
+  /* display: flex; */
+  /* justify-content: center; */
+  /* background-color: red; */
+  /* margin-left: 112px; */
+  /* justify-content:end; */
   font-size: 2.5rem;
   margin-bottom: 1rem;
+  font-weight: bold;
   color: white;
 }
 
 .hero-content p {
+  /* display: flex; */
+  /* justify-content: center; */
   font-size: 1.2rem;
+   /* margin-left: 112px; */
   /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
   font-weight: 800;
   margin-bottom: 1.5rem;
-  color: brown;
+  color:white;
 }
 
 .cta-button {
+  display: flex;
+  justify-content: center;
+  width: 150px;
   padding: 0.8rem 1.5rem;
   font-size: 1rem;
   background-color: #8b4513; /* dark brown */

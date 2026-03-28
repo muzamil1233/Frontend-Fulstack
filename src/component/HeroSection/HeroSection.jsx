@@ -8,7 +8,10 @@ const HeroSection = () => {
      <section className="hero-section">
       <div className="hero-content">
         <h1>Discover Your Style</h1>
-        <p>Shop the latest trends and timeless classics for every occasion.</p>
+        <p>Explore the perfect blend of modern trends and classic fashion pieces, 
+          carefully 
+          selected to help you look confident, 
+          stylish, and effortlessly elegant every single day</p>
         <button className="cta-button">Shop Now</button>
       </div>
       <div className="hero-image">
