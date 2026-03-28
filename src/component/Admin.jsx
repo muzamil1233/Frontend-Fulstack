@@ -62,9 +62,10 @@ const Admin = () => {
     setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
   };
 
-  const handleFileChange = (e) => {
-    setSelectedImages([...e.target.files]);
-  };
+ const handleFileChange = (e) => {
+  const newFiles = [...e.target.files];
+  setSelectedImages((prev) => [...prev, ...newFiles]); // ✅ merge don't overwrite
+};
 
   // ✅ Delete an existing image from preview
   const handleRemoveExisting = (index) => {
@@ -144,7 +145,13 @@ const Admin = () => {
           <input type="checkbox" name="isFeatured" checked={formData.isFeatured} onChange={handleChange} /> Featured
         </label>
 
-        <input type="file" multiple onChange={handleFileChange} className="file-input" />
+     <input
+  type="file"
+  multiple                    // ✅ already there, keep it
+  onChange={handleFileChange}
+  className="file-input"
+  key={selectedImages.length} // ✅ add this line — resets input after selection
+/>
 
         {/* ✅ Existing images with delete button */}
         {existingImages.length > 0 && (

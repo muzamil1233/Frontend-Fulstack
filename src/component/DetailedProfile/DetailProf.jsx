@@ -3,6 +3,108 @@ import { useNavigate, useParams } from "react-router-dom";
 import "./DetailProf.css";
 import { BASE_URL } from "../../api/baseUrl";
 
+
+
+const ImageSlider = ({ images, name }) => {
+  const [current, setCurrent] = useState(0);
+
+  if (!images || images.length === 0) return null;
+
+  const prevSlide = () => {
+    setCurrent((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  const nextSlide = () => {
+    setCurrent((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  };
+
+  return (
+    <div style={{ position: "relative", width: "100%", height: "400px", overflow: "hidden", borderRadius: "10px" }}>
+
+      {/* Main Image */}
+      <img
+        src={`${BASE_URL}${images[current]}`}
+        alt={`${name}-${current}`}
+        className="main-image"
+        style={{ width: "100%", height: "400px", objectFit: "cover", borderRadius: "10px" }}
+      />
+
+      {/* Arrows — only if more than 1 image */}
+      {images.length > 1 && (
+        <>
+          {/* Left Arrow */}
+          <button
+            onClick={prevSlide}
+            style={{
+              position: "absolute", top: "50%", left: "10px",
+              transform: "translateY(-50%)",
+              background: "rgba(0,0,0,0.5)", color: "white",
+              border: "none", borderRadius: "50%",
+              width: "36px", height: "36px",
+              cursor: "pointer", fontSize: "20px"
+            }}
+          >‹</button>
+
+          {/* Right Arrow */}
+          <button
+            onClick={nextSlide}
+            style={{
+              position: "absolute", top: "50%", right: "10px",
+              transform: "translateY(-50%)",
+              background: "rgba(0,0,0,0.5)", color: "white",
+              border: "none", borderRadius: "50%",
+              width: "36px", height: "36px",
+              cursor: "pointer", fontSize: "20px"
+            }}
+          >›</button>
+
+          {/* Dots */}
+          <div style={{
+            position: "absolute", bottom: "10px", width: "100%",
+            display: "flex", justifyContent: "center", gap: "6px"
+          }}>
+            {images.map((_, i) => (
+              <div
+                key={i}
+                onClick={() => setCurrent(i)}
+                style={{
+                  width: "9px", height: "9px", borderRadius: "50%",
+                  background: i === current ? "white" : "rgba(255,255,255,0.4)",
+                  cursor: "pointer"
+                }}
+              />
+            ))}
+          </div>
+        </>
+      )}
+
+      {/* Thumbnail Strip — only if more than 1 image */}
+      {images.length > 1 && (
+        <div style={{
+          display: "flex", gap: "8px", marginTop: "10px",
+          overflowX: "auto", padding: "4px"
+        }}>
+          {images.map((img, i) => (
+            <img
+              key={i}
+              src={`${BASE_URL}${img}`}
+              alt={`thumb-${i}`}
+              onClick={() => setCurrent(i)}
+              style={{
+                width: "60px", height: "60px", objectFit: "cover",
+                borderRadius: "6px", cursor: "pointer",
+                border: i === current ? "2px solid black" : "2px solid transparent",
+                opacity: i === current ? 1 : 0.6,
+                flexShrink: 0
+              }}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
 const DetailProf = () => {
   const navigate = useNavigate();
 
@@ -154,11 +256,14 @@ const handleQuantityChange = async (itemId, delta) => {
         {/* Left Section - Image */}
         <div className="product-images">
             
-          <img
+          {/* <img
             src={`${BASE_URL}${product.images?.[0]}`}
             alt={product.name}
             className="main-image"
-          />
+          /> */}
+           <div className="product-images">
+  <ImageSlider images={product.images} name={product.name} />
+</div>
         </div>
 
         {/* Right Section - Info */}
