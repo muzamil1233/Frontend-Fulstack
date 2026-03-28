@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../MainSection/Main.css";
 import Pagination from "../Pagination"; // import your component
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../../api/baseUrl";
 
 const Main = () => {
   const [products, setProducts] = useState([]);

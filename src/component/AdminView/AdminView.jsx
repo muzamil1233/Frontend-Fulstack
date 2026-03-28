@@ -5,6 +5,7 @@ import { useNavigate, } from "react-router-dom";
 
 import "./AdminView.css"; // import CSS
 import Pagination from "../Pagination";
+import { BASE_URL } from "../../api/baseUrl";
 
 const AdminView = () => {
     const navigate = useNavigate()
