@@ -34,7 +34,9 @@ const Login = () => {
 
     if (res.ok) {
       // Always store the token
+      // if (data.token) localStorage.setItem("token", data.token);
       if (data.token) localStorage.setItem("token", data.token);
+localStorage.setItem("role", role); // ✅ save role
 
       // Handle both possible user id formats
       if (data.user && (data.user.id || data.user._id)) {

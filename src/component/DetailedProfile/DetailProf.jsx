@@ -23,7 +23,8 @@ const ImageSlider = ({ images, name }) => {
 
       {/* Main Image */}
       <img
-        src={`${BASE_URL}${images[current]}`}
+        // src={`${BASE_URL}${images[current]}`}
+        src={images[current]}
         alt={`${name}-${current}`}
         className="main-image"
         style={{ width: "100%", height: "400px", objectFit: "cover", borderRadius: "10px" }}
@@ -87,7 +88,8 @@ const ImageSlider = ({ images, name }) => {
           {images.map((img, i) => (
             <img
               key={i}
-              src={`${BASE_URL}${img}`}
+              // src={`${BASE_URL}${img}`}
+              src={img}
               alt={`thumb-${i}`}
               onClick={() => setCurrent(i)}
               style={{

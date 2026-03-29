@@ -25,7 +25,8 @@ const ImageSlider = ({ images }) => {
       
       {/* Image */}
       <img
-        src={`${BASE_URL}${images[current]}`}
+        // src={`${BASE_URL}${images[current]}`}
+        src={images[current]}
         alt={`slide-${current}`}
         style={{ width: "100%", height: "250px", objectFit: "cover" }}
       />

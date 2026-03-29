@@ -161,7 +161,8 @@ const Admin = () => {
               {existingImages.map((img, i) => (
                 <div key={i} style={{ position: "relative", display: "inline-block" }}>
                   <img
-                    src={img.startsWith("http") ? img : `${BASE_URL}${img}`}
+                    // src={img.startsWith("http") ? img : `${BASE_URL}${img}`}
+                    src={img}
                     alt="existing"
                     className="preview-img"
                   />

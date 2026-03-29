@@ -98,7 +98,8 @@ useEffect(() => {
           {currentProducts.map((item) => (
             <div key={item._id} className="clothes-card">
               <img
-  src={`${BASE_URL}${item.images?.[0]}`}
+  // src={`${BASE_URL}${item.images?.[0]}`}
+  src={item.images?.[0]}
   alt={item.name}
   className="clothes-img"
 />
