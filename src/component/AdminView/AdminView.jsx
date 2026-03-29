@@ -120,11 +120,16 @@ useEffect(() => {
           ))}
         </div>
       )}
-        <Pagination
+        {/* <Pagination
         currPage={currentProducts}
         totalPages={totalPage}
         onPageChange={(page) => setCurrentPage(page)}
-      />
+      /> */}
+      <Pagination
+  currPage={currentPage}  // ✅ pass number
+  totalPages={totalPage}
+  onPageChange={(page) => setCurrentPage(page)}
+/>
     </div>
     
   );
