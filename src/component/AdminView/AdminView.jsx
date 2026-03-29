@@ -6,6 +6,12 @@ import { useNavigate, } from "react-router-dom";
 import "./AdminView.css"; // import CSS
 import Pagination from "../Pagination";
 import { BASE_URL } from "../../api/baseUrl";
+const getImageUrl = (img) => {
+  if (!img) return "";
+  if (img.startsWith("http")) return img;
+  if (img.startsWith("/uploads")) return `${BASE_URL}${img}`;
+  return `${BASE_URL}/uploads/${img}`;
+};
 
 const AdminView = () => {
     const navigate = useNavigate()
@@ -99,7 +105,8 @@ useEffect(() => {
             <div key={item._id} className="clothes-card">
               <img
   // src={`${BASE_URL}${item.images?.[0]}`}
-  src={item.images?.[0]}
+  // src={item.images?.[0]}
+  src={getImageUrl(item.images?.[0])}
   alt={item.name}
   className="clothes-img"
 />

@@ -3,6 +3,12 @@ import "../MainSection/Main.css";
 import Pagination from "../Pagination"; // import your component
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../api/baseUrl";
+const getImageUrl = (img) => {
+  if (!img) return "";
+  if (img.startsWith("http")) return img;
+  if (img.startsWith("/uploads")) return `${BASE_URL}${img}`;
+  return `${BASE_URL}/uploads/${img}`;
+};
 
 
 const ImageSlider = ({ images }) => {
@@ -26,7 +32,8 @@ const ImageSlider = ({ images }) => {
       {/* Image */}
       <img
         // src={`${BASE_URL}${images[current]}`}
-        src={images[current]}
+        // src={images[current]}
+        src={getImageUrl(images[current])}
         alt={`slide-${current}`}
         style={{ width: "100%", height: "250px", objectFit: "cover" }}
       />

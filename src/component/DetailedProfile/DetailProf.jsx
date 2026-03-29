@@ -2,6 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./DetailProf.css";
 import { BASE_URL } from "../../api/baseUrl";
+const getImageUrl = (img) => {
+  if (!img) return "";
+  if (img.startsWith("http")) return img;
+  if (img.startsWith("/uploads")) return `${BASE_URL}${img}`;
+  return `${BASE_URL}/uploads/${img}`;
+};
 
 
 
@@ -24,7 +30,9 @@ const ImageSlider = ({ images, name }) => {
       {/* Main Image */}
       <img
         // src={`${BASE_URL}${images[current]}`}
-        src={images[current]}
+        // src={images[current]}
+        src={getImageUrl(images[current])}
+// src={getImageUrl(img)}
         alt={`${name}-${current}`}
         className="main-image"
         style={{ width: "100%", height: "400px", objectFit: "cover", borderRadius: "10px" }}
@@ -89,7 +97,8 @@ const ImageSlider = ({ images, name }) => {
             <img
               key={i}
               // src={`${BASE_URL}${img}`}
-              src={img}
+              // src={img}
+              src={getImageUrl(img)}
               alt={`thumb-${i}`}
               onClick={() => setCurrent(i)}
               style={{
