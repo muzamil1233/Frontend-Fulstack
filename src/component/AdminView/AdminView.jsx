@@ -106,7 +106,8 @@ useEffect(() => {
               <img
   // src={`${BASE_URL}${item.images?.[0]}`}
   // src={item.images?.[0]}
-  src={getImageUrl(item.images?.[0])}
+  // src={getImageUrl(item.images?.[0])}
+  src={getImageUrl(item.images?.[0]) || null}
   alt={item.name}
   className="clothes-img"
 />
