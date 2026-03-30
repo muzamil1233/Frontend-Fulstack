@@ -2,6 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./categoryClothes.css"; // import CSS
 import { BASE_URL } from "../../api/baseUrl";
+const getImageUrl = (img) => {
+  if (!img) return null;
+  if (img.startsWith("http")) return img;
+  if (img.startsWith("/uploads")) return `${BASE_URL}${img}`;
+  return `${BASE_URL}/uploads/${img}`;
+};
 
 const CategoryClothes = () => {
   const { category } = useParams();
@@ -55,12 +61,17 @@ const CategoryClothes = () => {
         <div className="clothes-grid">
           {clothes.map((item) => (
             <div key={item._id} className="clothes-card">
-              <img
+              {/* <img
   src={`${BASE_URL}${item.images?.[0]}`}
   alt={item.name}
   className="clothes-img"
-/>
+/> */}
 
+<img
+  src={getImageUrl(item.images?.[0])}
+  alt={item.name}
+  className="clothes-img"
+/>
               <h4 className="clothes-name">{item.name}</h4>
               <p className="clothes-price">₹{item.price}</p>
             </div>

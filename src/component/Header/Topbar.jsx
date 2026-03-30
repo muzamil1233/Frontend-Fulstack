@@ -5,6 +5,7 @@ import "../Header/Topbar.css";
 import { useNavigate } from "react-router-dom";
 import { FaHeart, FaShoppingCart, FaSignOutAlt } from "react-icons/fa";
 import Pagination from "../Pagination";
+import { BASE_URL } from "../../api/baseUrl";
 
 
 const Topbar = () => {
@@ -66,7 +67,7 @@ const handleCartClick = async () => {
 
     try {
       const response = await fetch(
-        `http://localhost:8000/api/Bag/getbag/${userId}`,
+  `${BASE_URL}/api/Bag/getbag/${userId}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -103,7 +104,7 @@ const handleQuantityChange = async (itemId, delta) => {
   try {
     const token = localStorage.getItem("token");
 
-    await fetch(`http://localhost:8000/api/Bag/patchBag/${itemId}`, {
+    await fetch(`${BASE_URL}/api/Bag/patchBag/${itemId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
