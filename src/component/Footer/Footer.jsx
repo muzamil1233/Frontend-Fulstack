@@ -56,7 +56,7 @@ const Footer = () => {
           <ul>
             <li><Link to="/home">New Arrivals</Link></li>
             <li><Link to="/wedding">Wear to Wedding</Link></li>
-            <li><Link to="/category/men">Man</Link></li>
+            <li><Link to="/category/Machine">Man</Link></li>
             <li><Link to="/category/women">Woman</Link></li>
             <li><Link to="/category/kids">Kids</Link></li>
           </ul>

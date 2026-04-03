@@ -156,12 +156,16 @@ const Main = () => {
       </div>
 
       {/* Pagination */}
-      <Pagination
+      <div className="pagination">
+         <Pagination
         currPage={currentPage}
         totalPages={totalPages}
         onPageChange={(page) => setCurrentPage(page)}
       />
+      </div>
+     
     </div>
+    
   );
 };
 

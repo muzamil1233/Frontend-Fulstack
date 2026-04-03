@@ -137,9 +137,9 @@ const handleQuantityChange = async (itemId, delta) => {
           <img src={outfit} alt="Shop Logo" />
         </div>
         <div className="navlinks">
-          <span onClick={() => navigate("/category/women")}>Women</span>
-          <span onClick={() => navigate("/category/kids")}>Kids</span>
-          <span onClick={() => navigate("/category/men")}>Men</span>
+          <span onClick={() => navigate("/category/Hand Tilla")}>Hand Tilla</span>
+          <span onClick={() => navigate("/category/Aari Work")}>Aari work</span>
+          <span onClick={() => navigate("/category/Machine")}>Machine</span>
         </div>
       </div>
 

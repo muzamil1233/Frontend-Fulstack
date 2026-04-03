@@ -2,18 +2,19 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   justify-content: space-between;
   padding: 2rem;
 
-  background-image: url("../../assets/image2.webp"); /* ✅ verify this path */
+  background-image: url("../../assets/Rb\ tilla.png"); /* ✅ verify this path */
   background-size: cover;       /* covers full area */
   background-position: center;  /* ✅ ADD THIS — centers the image */
   background-repeat: no-repeat; /* ✅ ADD THIS — prevents tiling */
   /* background-color: palegoldenrod; acts as fallback only if image fails */
   background-color: aqua;
 
-  min-height: 100vh; /* ✅ ADD THIS — gives section height to show the image */
+  min-height: 150vh; 
+  /* ✅ ADD THIS — gives section height to show the image */
 
 }
 
