@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import outfit from "../../assets/logo.jpeg";
+import outfit from "../../assets/Logo.jpeg";
 import search from "../../assets/search.png";
 import "../Header/Topbar.css";
 import { useNavigate } from "react-router-dom";
