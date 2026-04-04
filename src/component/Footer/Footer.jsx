@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "../Footer/Footer.css";
-import logo from "../../assets/Logo.jpeg";
+import logo from "../../assets/logo1.png";
 import { Link } from "react-router-dom";
+import emailjs from '@emailjs/browser'
 
 const Footer = () => {
   const [formData, setFormData] = useState({
@@ -16,30 +17,62 @@ const Footer = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus("Sending...");
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setStatus("Sending...");
 
-    try {
-      const response = await fetch(`${BASE_URL}/api/query/sendquery`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+  //   try {
+  //     const response = await fetch(`${BASE_URL}/api/query/sendquery`, {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(formData),
+  //     });
 
-      const data = await response.json();
+  //     const data = await response.json();
 
-      if (data.success) {
-        setStatus("Message sent!");
-        setFormData({ name: "", email: "", message: "" });
-      } else {
-        setStatus("Failed to send!");
-      }
-    } catch (error) {
-      setStatus("Error sending message!");
-    }
-  };
+  //     if (data.success) {
+  //       setStatus("Message sent!");
+  //       setFormData({ name: "", email: "", message: "" });
+  //     } else {
+  //       setStatus("Failed to send!");
+  //     }
+  //   } catch (error) {
+  //     setStatus("Error sending message!");
+  //   }
+  // };
 
+
+  // import emailjs from '@emailjs/browser';
+
+// Replace these with your actual IDs
+const SERVICE_ID = "service_kk89e8j";
+const TEMPLATE_ID = "template_rzx5vmk";
+const PUBLIC_KEY = "uxIpCjUW10TZ7bYE9";
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setStatus("Sending...");
+
+  try {
+    await emailjs.send(
+      SERVICE_ID,
+      TEMPLATE_ID,
+      {
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+      },
+      PUBLIC_KEY
+    );
+
+    setStatus("Message sent! ✅");
+    setFormData({ name: "", email: "", message: "" });
+
+  } catch (error) {
+    console.error("EmailJS Error:", error);
+    setStatus("Failed to send! ❌");
+  }
+};
   return (
     <footer className="footer">
       <div className="footer-container">
@@ -54,11 +87,11 @@ const Footer = () => {
         <div className="footer-links">
           <h3>Quick Links</h3>
           <ul>
-            <li><Link to="/home">New Arrivals</Link></li>
-            <li><Link to="/wedding">Wear to Wedding</Link></li>
-            <li><Link to="/category/Machine">Man</Link></li>
-            <li><Link to="/category/women">Woman</Link></li>
-            <li><Link to="/category/kids">Kids</Link></li>
+            {/* <li><Link to="/home">New Arrivals</Link></li> */}
+            {/* <li><Link to="/wedding">Wear to Wedding</Link></li> */}
+            <li><Link to="/category/Machine">Hand Tilla </Link></li>
+            <li><Link to="/category/women">Machine</Link></li>
+            <li><Link to="/category/kids">Aari work</Link></li>
           </ul>
         </div>
 
@@ -67,7 +100,7 @@ const Footer = () => {
           <h3>Contact Info</h3>
           <p>Email: muzamiln213@gmail.com</p>
           <p>Phone: +91 6006318647</p>
-          <p>Address: Sangrama Sopore, Jammu & Kashmir, India</p>
+          <p>Address: Chinkipora sopore india ,Jammu & Kashmir, India</p>
         </div>
 
         {/* Query Box */}

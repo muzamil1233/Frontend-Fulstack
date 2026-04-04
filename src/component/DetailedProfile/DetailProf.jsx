@@ -41,7 +41,7 @@ const ImageSlider = ({ images, name }) => {
       {/* Arrows — only if more than 1 image */}
       {images.length > 1 && (
         <>
-          {/* Left Arrow */}
+          {/* Left Arrow */} 
           <button
             onClick={prevSlide}
             style={{

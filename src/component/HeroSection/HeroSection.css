@@ -1,65 +1,57 @@
 .hero-section {
   display: flex;
-  justify-content: center;
-  width: 100%;
-  /* flex-wrap: wrap; */
   justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* important for mobile */
+  width: 100%;
   padding: 2rem;
 
-  background-image: url("../../assets/Rb\ tilla.png"); /* ✅ verify this path */
-  background-size: cover;       /* covers full area */
-  background-position: center;  /* ✅ ADD THIS — centers the image */
-  background-repeat: no-repeat; /* ✅ ADD THIS — prevents tiling */
-  /* background-color: palegoldenrod; acts as fallback only if image fails */
+  background-image: url("../../assets/Rb tilla.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   background-color: aqua;
 
-  min-height: 150vh; 
-  /* ✅ ADD THIS — gives section height to show the image */
-
+  min-height: 100vh; /* better than 150vh */
+  gap: 2rem;
+  box-sizing: border-box;
 }
 
 .hero-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-content: end;
-  /* flex: 1; */
+  flex: 1;
   min-width: 300px;
-  margin-left: 10%;
+  max-width: 600px;
   padding: 1rem;
-  /* background-color: black; */
+  margin-left: 0; /* remove fixed left margin */
 }
 
 .hero-content h1 {
-  /* display: flex; */
-  /* justify-content: center; */
-  /* background-color: red; */
-  /* margin-left: 112px; */
-  /* justify-content:end; */
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   margin-bottom: 1rem;
   font-weight: bold;
   color: white;
+  line-height: 1.2;
 }
 
 .hero-content p {
-  /* display: flex; */
-  /* justify-content: center; */
   font-size: 1.2rem;
-   /* margin-left: 112px; */
-  /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
   font-weight: 800;
   margin-bottom: 1.5rem;
-  color:white;
+  color: white;
+  line-height: 1.6;
 }
 
 .cta-button {
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 150px;
   padding: 0.8rem 1.5rem;
   font-size: 1rem;
-  background-color: #8b4513; /* dark brown */
+  background-color: #8b4513;
   color: white;
   border: none;
   border-radius: 6px;
@@ -81,4 +73,90 @@
   width: 100%;
   max-width: 500px;
   border-radius: 10px;
+}
+
+/* =========================
+   Tablet
+========================= */
+@media (max-width: 992px) {
+  .hero-section {
+    padding: 2rem 1.5rem;
+    min-height: auto;
+  }
+
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-content p {
+    font-size: 1.1rem;
+  }
+
+  .hero-image img {
+    max-width: 400px;
+  }
+}
+
+/* =========================
+   Mobile
+========================= */
+@media (max-width: 768px) {
+  .hero-section {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 1rem;
+    min-height: auto;
+  }
+
+  .hero-content {
+    align-items: center;
+    min-width: 100%;
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .cta-button {
+    width: 160px;
+  }
+
+  .hero-image {
+    min-width: 100%;
+  }
+
+  .hero-image img {
+    max-width: 100%;
+  }
+}
+
+/* =========================
+   Small Mobile
+========================= */
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 2rem 1rem;
+  }
+
+  .hero-content h1 {
+    font-size: 1.6rem;
+  }
+
+  .hero-content p {
+    font-size: 0.95rem;
+  }
+
+  .cta-button {
+    width: 140px;
+    font-size: 0.9rem;
+    padding: 0.7rem 1.2rem;
+  }
 }
