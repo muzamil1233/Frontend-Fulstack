@@ -8,7 +8,11 @@ import Footer from '../Footer/Footer';
 
 const Dashboard = () => {
   return (
-    <div style={{ paddingTop: "60px" }}> {/* correct camelCase */}
+    <div >
+    {/* // style={{ paddingTop: "60px" }} */}
+     {/* correct camelCase */}
+    
+      
       <Topbar />
       <HeroSection />
       <Main />
