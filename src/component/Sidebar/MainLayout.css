@@ -1,5 +1,7 @@
 .layout {
   display: flex;
+  width: 100%;
+  overflow-x: hidden; /* ← prevent horizontal scroll */
 }
 
 /* Main section next to sidebar */
@@ -7,16 +9,61 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  margin-left: 220px; /* ← matches sidebar width */
+  transition: margin-left 0.3s ease;
+  min-width: 0; /* ← prevents flex child overflow */
+  width: calc(100% - 220px); /* ← exact remaining width */
+}
+
+/* Collapsed sidebar state */
+.layout-main.collapsed {
+  margin-left: 70px; /* ← matches collapsed sidebar width */
+  width: calc(100% - 70px);
 }
 
 /* Content below Topbar */
 .layout-content {
   padding: 20px;
-  margin-top: 60px; /* height of Topbar */
-  transition: margin-left 0.3s ease;
+  margin-top: 60px; /* ← height of Topbar */
+  width: 100%;
+  box-sizing: border-box;
 }
 
-/* Adjust when sidebar is collapsed */
-.sidebar.collapsed + .layout-main .layout-content {
-  margin-left: 70px; /* optional if you want content to shift */
+/* =========================
+   Tablet
+========================= */
+@media (max-width: 992px) {
+  .layout-main {
+    margin-left: 200px; /* ← matches tablet sidebar width */
+    width: calc(100% - 200px);
+  }
+
+  .layout-main.collapsed {
+    margin-left: 65px;
+    width: calc(100% - 65px);
+  }
+}
+
+/* =========================
+   Mobile — sidebar hidden off screen
+========================= */
+@media (max-width: 768px) {
+  .layout-main {
+    margin-left: 0 !important; /* ← KEY FIX: sidebar is hidden on mobile */
+    width: 100% !important;
+  }
+
+  .layout-content {
+    padding: 15px;
+    margin-top: 60px;
+  }
+}
+
+/* =========================
+   Small Mobile
+========================= */
+@media (max-width: 480px) {
+  .layout-content {
+    padding: 10px;
+  }
 }

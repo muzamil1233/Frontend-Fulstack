@@ -1,25 +1,12 @@
 import React from 'react'
-import brand from "../../assets/Brand.jpg"
+import brand from "../../assets/Rb tilla.png"
 import "../HeroSection/HeroSection.css"
 
 const HeroSection = () => {
   return (
-    <>
-     <section className="hero-section">
-      {/* <div className="hero-content">
-        <h1>Discover Your Style</h1>
-        <p>Explore the perfect blend of modern trends and classic fashion pieces, 
-          carefully 
-          selected to help you look confident, 
-          stylish, and effortlessly elegant every single day</p>
-        <button className="cta-button">Shop Now</button>
-      </div> */}
-      <div className="hero-image">
-        {/* <img src={brand} alt="Hero Banner" /> */}
-      </div>
+    <section className="hero-section">
+      <img src={brand} alt="Hero Banner" className="hero-img" />
     </section>
-    </>
-    
   )
 }
 

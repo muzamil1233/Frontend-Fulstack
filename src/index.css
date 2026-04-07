@@ -2,10 +2,23 @@
   box-sizing: border-box;
 }
 
+html {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   width: 100%;
   max-width: 100vw;
-  overflow-x: hidden; /* hides the scroll, but find the real cause too */
-  margin: 0;
+  overflow-x: hidden;
+  margin: 0 auto;  /* ← centers the body */
   padding: 0;
+  position: relative;
+}
+
+#root {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  margin: 0 auto;  /* ← centers the root */
 }

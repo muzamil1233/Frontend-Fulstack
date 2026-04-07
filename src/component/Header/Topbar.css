@@ -5,31 +5,24 @@
   box-sizing: border-box;
 }
 
-/* =========================
-   Topbar Container
-========================= */
 .Topbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   height: 60px;
   width: 100%;
   background-color: grey;
   padding: 0 20px;
   font-family: sans-serif;
   gap: 20px;
+  overflow: hidden; /* ← prevents navbar itself from overflowing */
 }
 
-/* =========================
-   Left Section
-========================= */
 .leftSection {
   display: flex;
   align-items: center;
@@ -62,15 +55,12 @@
   color: black;
 }
 
-/* =========================
-   Search Bar
-========================= */
 .search-bar {
   display: flex;
   align-items: center;
   flex: 1;
   max-width: 550px;
-  min-width: 180px;
+  min-width: 0; /* ← was 180px, this caused overflow */
   background-color: white;
   border: 1px solid grey;
   border-radius: 10px;
@@ -94,6 +84,7 @@
 
 .search-bar .input input {
   flex: 1;
+  min-width: 0; /* ← critical, prevents input from overflowing */
   height: 100%;
   border: none;
   outline: none;
@@ -101,9 +92,6 @@
   background: transparent;
 }
 
-/* =========================
-   Right Section
-========================= */
 .right-section {
   display: flex;
   align-items: center;
@@ -132,9 +120,6 @@
   z-index: 10;
 }
 
-/* =========================
-   Hamburger Button
-========================= */
 .menu-toggle {
   display: none;
   font-size: 26px;
@@ -151,24 +136,12 @@
     gap: 12px;
   }
 
-  .leftSection {
-    gap: 20px;
-  }
-
-  .navlinks {
-    gap: 15px;
-  }
-
   .navlinks a {
     font-size: 14px;
   }
 
   .search-bar {
     max-width: 320px;
-  }
-
-  .icon {
-    font-size: 22px;
   }
 }
 
@@ -177,45 +150,49 @@
 ========================= */
 @media (max-width: 768px) {
   .Topbar {
-    height: auto;
-    min-height: 60px;
-    flex-wrap: wrap;
-    padding: 10px 15px;
-    gap: 10px;
+    height: 60px;        /* ← fixed height, no wrapping */
+    flex-wrap: nowrap;   /* ← KEY FIX: stops items spilling to next row */
+    padding: 0 12px;
+    gap: 8px;
   }
 
   .leftSection {
-    width: 100%;
-    justify-content: space-between;
-    gap: 10px;
+    width: auto;         /* ← KEY FIX: was 100%, caused full row takeover */
+    gap: 8px;
+  }
+
+  .navlinks {
+    display: none;       /* hidden on mobile, shown via hamburger */
+  }
+
+  .navlinks.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background-color: grey;
+    padding: 10px 15px;
+    gap: 12px;
+    z-index: 999;
   }
 
   .menu-toggle {
     display: block;
   }
 
-  .navlinks {
-    display: none;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-    background-color: grey;
-    padding: 10px 0;
-    gap: 12px;
-  }
-
-  .navlinks.active {
-    display: flex;
-  }
-
   .search-bar {
-    order: 3;
-    width: 100%;
+    flex: 1;
     max-width: 100%;
+    min-width: 0;        /* ← prevents search bar overflow */
+    height: 36px;
   }
 
   .right-section {
-    margin-left: auto;
+    gap: 10px;
+    flex-shrink: 0;
+    margin-left: 0;      /* ← removed auto margin */
   }
 }
 
@@ -224,21 +201,12 @@
 ========================= */
 @media (max-width: 480px) {
   .Topbar {
-    padding: 10px 12px;
-  }
-
-  .leftSection .logo img {
-    width: 28px;
-    height: 28px;
+    padding: 0 10px;
+    gap: 6px;
   }
 
   .search-bar {
-    height: 38px;
-    padding: 0 8px;
-  }
-
-  .search-bar .input input {
-    font-size: 14px;
+    height: 34px;
   }
 
   .icon {
