@@ -7,7 +7,7 @@ import backgroundImage from "../../assets/Rb.png"
 const SubMain = () => {
   return (
     <div className="wear-section1">
-      <h1>About us</h1>
+      {/* <h1>About us</h1> */}
       <div className="wear-section">
          <div className="wear-content">
         <h2>Crafting Elegance Through Kashmiri Heritage</h2>
