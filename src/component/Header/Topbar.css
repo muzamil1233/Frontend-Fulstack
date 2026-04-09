@@ -20,7 +20,12 @@
   padding: 0 20px;
   font-family: sans-serif;
   gap: 20px;
-  overflow: hidden; /* ← prevents navbar itself from overflowing */
+  /* overflow: hidden; ← prevents navbar itself from overflowing
+   */
+  
+  overflow: visible;
+
+
 }
 
 .leftSection {
@@ -183,11 +188,49 @@
   }
 
   .search-bar {
-    flex: 1;
-    max-width: 100%;
-    min-width: 0;        /* ← prevents search bar overflow */
-    height: 36px;
+    display: none;
   }
+
+  .search-bar.active {
+    display: flex;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    z-index: 3000;
+    background: white;
+    border-radius: 10px;
+    padding: 0 10px;
+    height: 42px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  }
+
+  .mobile-search-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+
+  }
+  .mobile-search-icon img {
+  width: 20px;
+  height: 20px;
+}
+
+  .icon {
+    font-size: 20px;
+  }
+
+  .close-search {
+    display: block;
+    cursor: pointer;
+    font-size: 18px;
+    color: black;
+    margin-left: 8px;
+    font-weight: bold;
+  }
+
+
 
   .right-section {
     gap: 10px;

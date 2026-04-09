@@ -9,8 +9,13 @@ import { BASE_URL } from "../../api/baseUrl";
 
 
 const Topbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
+
+
    const [products, setProducts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+
     const productsPerPage = 5;
   const navigate = useNavigate()
 // console.log("Topbar rendered");
@@ -132,24 +137,38 @@ const handleQuantityChange = async (itemId, delta) => {
   return (
     <div className="Topbar">
       {/* Left Section */}
-      <div className="leftSection">
-        <div className="logo">
-          <img src={outfit} alt="Shop Logo" />
-        </div>
-        <div className="navlinks">
-          <span onClick={() => navigate("/category/Hand Tilla")}>Hand Tilla</span>
-          <span onClick={() => navigate("/category/Aari Work")}>Aari work</span>
-          <span onClick={() => navigate("/category/Machine")}>Machine</span>
-        </div>
-      </div>
+    <div className="leftSection">
+  <div className="logo">
+    <img src={outfit} alt="Shop Logo" />
+  </div>
+
+  <div className={`navlinks ${menuOpen ? "active" : ""}`}>
+    <span onClick={() => navigate("/category/Hand Tilla")}>Hand Tilla</span>
+    <span onClick={() => navigate("/category/Aari Work")}>Aari work</span>
+    <span onClick={() => navigate("/category/Machine")}>Machine</span>
+  </div>
+
+  <div className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+    ☰
+  </div>
+</div>
+
 
       {/* Search Bar */}
-      <div className="search-bar">
-        <div className="input">
-          <img src={search} alt="Search Icon" className="search-icon" />
-          <input type="text" placeholder="Search for products..." />
-        </div>
-      </div>
+     {/* Desktop Search */}
+<div className={`search-bar ${showSearch ? "active" : ""}`}>
+  <div className="input">
+    <img src={search} alt="Search Icon" className="search-icon" />
+    <input type="text" placeholder="Search for products..." />
+    <span className="close-search" onClick={() => setShowSearch(false)}>✕</span>
+  </div>
+</div>
+
+{/* Mobile Search Icon */}
+<div className="mobile-search-icon" onClick={() => setShowSearch(true)}>
+  <img src={search} alt="Search Icon" className="search-icon" />
+</div>
+
 
       {/* Right Section */}
   <div className="right-section" style={{ display: "flex", alignItems: "center", gap: "20px" }}>

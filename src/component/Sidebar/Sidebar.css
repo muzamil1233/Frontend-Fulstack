@@ -166,7 +166,7 @@
     transform: translateX(0);
   }
 
-  /* On mobile collapsed should still show as full drawer */
+  /* Sidebar should always open full on mobile */
   .sidebar.collapsed {
     width: 220px;
   }
@@ -192,14 +192,40 @@
     margin-right: 15px;
     width: auto;
   }
+
+  /* Hide desktop collapse icon inside sidebar on mobile */
+  .toggle-btn {
+    display: none;
+  }
+
+  /* Show only floating arrow button */
+  .mobile-sidebar-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 80px;
+    left: 10px;
+    width: 36px;
+    height: 36px;
+    background-color: #1e1e2f;
+    color: white;
+    border-radius: 50%;
+    z-index: 1100;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    font-size: 16px;
+  }
 }
+
+
 
 /* =========================
    SMALL MOBILE
 ========================= */
 @media (max-width: 480px) {
   .sidebar {
-    width: 200px;
+    width: 100px;
     padding: 8px;
   }
 
