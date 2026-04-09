@@ -11,7 +11,8 @@ body {
   width: 100%;
   max-width: 100vw;
   overflow-x: hidden;
-  margin: 0 auto;  /* ← centers the body */
+  margin: 0 auto;
+   
   padding: 0;
   position: relative;
 }
@@ -20,5 +21,6 @@ body {
   width: 100%;
   max-width: 100vw;
   overflow-x: hidden;
-  margin: 0 auto;  /* ← centers the root */
+  margin: 0 auto;
+    /* ← centers the root */
 }

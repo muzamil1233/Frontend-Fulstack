@@ -18,7 +18,9 @@ const MainLayout = ({ children }) => {
 
       <div className={`layout-main ${isCollapsed ? "collapsed" : ""}`}>
         <Topbar setIsOpen={setIsOpen} />
-        <div className="layout-content">{children}</div>
+        <div className="layout-content" style = {{
+          
+        }}>{children}</div>
       </div>
     </div>
   );

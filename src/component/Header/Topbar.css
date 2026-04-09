@@ -5,6 +5,9 @@
   box-sizing: border-box;
 }
 
+/* =========================
+   TOPBAR
+========================= */
 .Topbar {
   position: fixed;
   top: 0;
@@ -20,14 +23,12 @@
   padding: 0 20px;
   font-family: sans-serif;
   gap: 20px;
-  /* overflow: hidden; ← prevents navbar itself from overflowing
-   */
-  
   overflow: visible;
-
-
 }
 
+/* =========================
+   LEFT SECTION
+========================= */
 .leftSection {
   display: flex;
   align-items: center;
@@ -41,31 +42,37 @@
   cursor: pointer;
 }
 
+/* =========================
+   NAVLINKS
+========================= */
 .navlinks {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-.navlinks a {
+.navlinks span {
   color: white;
   font-weight: 600;
-  text-decoration: none;
   font-size: 15px;
   white-space: nowrap;
   transition: 0.3s;
+  cursor: pointer;
 }
 
-.navlinks a:hover {
+.navlinks span:hover {
   color: black;
 }
 
+/* =========================
+   SEARCH BAR
+========================= */
 .search-bar {
   display: flex;
   align-items: center;
   flex: 1;
   max-width: 550px;
-  min-width: 0; /* ← was 180px, this caused overflow */
+  min-width: 0;
   background-color: white;
   border: 1px solid grey;
   border-radius: 10px;
@@ -89,7 +96,7 @@
 
 .search-bar .input input {
   flex: 1;
-  min-width: 0; /* ← critical, prevents input from overflowing */
+  min-width: 0;
   height: 100%;
   border: none;
   outline: none;
@@ -97,6 +104,9 @@
   background: transparent;
 }
 
+/* =========================
+   RIGHT SECTION
+========================= */
 .right-section {
   display: flex;
   align-items: center;
@@ -125,6 +135,9 @@
   z-index: 10;
 }
 
+/* =========================
+   MENU TOGGLE
+========================= */
 .menu-toggle {
   display: none;
   font-size: 26px;
@@ -133,7 +146,27 @@
 }
 
 /* =========================
-   Tablet
+   MOBILE SEARCH ICON
+========================= */
+.mobile-search-icon {
+  display: none;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-search-icon img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.close-search {
+  display: none;
+}
+
+/* =========================
+   TABLET
 ========================= */
 @media (max-width: 992px) {
   .Topbar {
@@ -141,7 +174,7 @@
     gap: 12px;
   }
 
-  .navlinks a {
+  .navlinks span {
     font-size: 14px;
   }
 
@@ -151,23 +184,23 @@
 }
 
 /* =========================
-   Mobile
+   MOBILE
 ========================= */
 @media (max-width: 768px) {
   .Topbar {
-    height: 60px;        /* ← fixed height, no wrapping */
-    flex-wrap: nowrap;   /* ← KEY FIX: stops items spilling to next row */
+    height: 60px;
+    flex-wrap: nowrap;
     padding: 0 12px;
     gap: 8px;
   }
 
   .leftSection {
-    width: auto;         /* ← KEY FIX: was 100%, caused full row takeover */
+    width: auto;
     gap: 8px;
   }
 
   .navlinks {
-    display: none;       /* hidden on mobile, shown via hamburger */
+    display: none;
   }
 
   .navlinks.active {
@@ -187,10 +220,12 @@
     display: block;
   }
 
+  /* Hide full search initially */
   .search-bar {
     display: none;
   }
 
+  /* Show search when active */
   .search-bar.active {
     display: flex;
     position: fixed;
@@ -202,23 +237,19 @@
     border-radius: 10px;
     padding: 0 10px;
     height: 42px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   }
 
+  /* Show mobile search icon */
   .mobile-search-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 15px;
-
   }
-  .mobile-search-icon img {
-  width: 20px;
-  height: 20px;
-}
 
-  .icon {
-    font-size: 20px;
+  .mobile-search-icon img {
+    width: 16px;
+    height: 16px;
   }
 
   .close-search {
@@ -230,17 +261,19 @@
     font-weight: bold;
   }
 
-
-
   .right-section {
     gap: 10px;
     flex-shrink: 0;
-    margin-left: 0;      /* ← removed auto margin */
+    margin-left: 0;
+  }
+
+  .icon {
+    font-size: 20px;
   }
 }
 
 /* =========================
-   Small Mobile
+   SMALL MOBILE
 ========================= */
 @media (max-width: 480px) {
   .Topbar {
@@ -248,8 +281,8 @@
     gap: 6px;
   }
 
-  .search-bar {
-    height: 34px;
+  .search-bar.active {
+    height: 38px;
   }
 
   .icon {
@@ -259,5 +292,10 @@
   .cart-badge {
     font-size: 10px;
     padding: 2px 5px;
+  }
+
+  .mobile-search-icon img {
+    width: 15px;
+    height: 15px;
   }
 }

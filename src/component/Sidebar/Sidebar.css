@@ -6,9 +6,10 @@
   background-color: #1e1e2f;
   color: white;
   height: calc(100vh - 60px);
-  width: 220px;
+  /* width: px; */
   transition: all 0.3s ease;
   position: fixed;
+  /* position: relative; */
   top: 0;
   left: 0;
   display: flex;
