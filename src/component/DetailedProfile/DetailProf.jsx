@@ -148,29 +148,16 @@ const DetailProf = () => {
 useEffect(() => {
   const fetchCart = async () => {
     try {
-      const token = localStorage.getItem("token");
-      const userId = localStorage.getItem("userId"); // 🔥 FIXED
+      const userId = localStorage.getItem("userId");
 
       if (!userId) {
-        console.error("❌ userId missing in localStorage");
-        return;
+        console.warn("⚠️ User not logged in, skipping cart fetch");
+        return; // ✅ silently stop
       }
 
-     const res = await fetch(`${BASE_URL}/api/Bag/getbag/${userId}`, {
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-});
-
-
-      if (!res.ok) {
-        console.error("❌ API Error:", res.status);
-        return;
-      }
+      const res = await fetch(`${BASE_URL}/api/Bag/getbag/${userId}`);
 
       const data = await res.json();
-      console.log("Cart Data:", data);
-
       setCartItems(data.items || []);
     } catch (err) {
       console.error("Error fetching cart:", err);
@@ -179,6 +166,7 @@ useEffect(() => {
 
   fetchCart();
 }, []);
+
 
 
 

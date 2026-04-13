@@ -39,13 +39,14 @@ const Login = () => {
 localStorage.setItem("role", role); // ✅ save role
 
       // Handle both possible user id formats
-      if (data.user && (data.user.id || data.user._id)) {
-        const id = data.user.id || data.user._id;
-        localStorage.setItem("userId", id);
-        console.log("✅ Stored userId:", id);
-      } else {
-        console.warn("⚠️ No user.id found in response");
-      }
+      // ✅ Always store userId directly from backend
+if (data.userId) {
+  localStorage.setItem("userId", data.userId);
+  console.log("✅ Stored userId:", data.userId);
+} else {
+  console.warn("⚠️ userId missing in response");
+}
+
 
       // Redirect
       if (role === "admin") navigate("/admin");
