@@ -182,35 +182,37 @@ useEffect(() => {
 
 
 
- const handleEdit = async () => {
+const handleEdit = async () => {
   if (!selectedColor) {
     return alert("Please select a color");
   }
+
+  const token = localStorage.getItem("token");
+   console.log("🔑 Token:", token);
+
+  if (!token) {
+    return alert("You must be logged in to add items to your bag.");
+  }
+
   setLoading(true);
   try {
     const response = await fetch(`${BASE_URL}/api/Bag/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`, // ✅ userId comes from this
       },
       body: JSON.stringify({
-  userId: localStorage.getItem("userId"),  // ✅ add this
-  productId: product._id,
-  color: selectedColor,
-  quantity: 1,
-}),
+        productId: product._id,  // ✅ only productId needed in body
+        color: selectedColor,
+        quantity: 1,
+      }),
     });
-    console.log("🧾 Sending productId:", product._id);
-
 
     const data = await response.json();
-    
 
     if (response.ok) {
       alert("✅ Item added to your bag!");
-
-      // 🔥 Tell Topbar to refresh count
       window.dispatchEvent(new Event("cart-updated"));
     } else {
       alert(`❌ Failed: ${data.message || "Something went wrong"}`);
@@ -222,6 +224,7 @@ useEffect(() => {
     setLoading(false);
   }
 };
+
 const handleQuantityChange = async (itemId, delta) => {
   // Find and update UI quantity first
   const updatedCart = cartItems.map(item => {
