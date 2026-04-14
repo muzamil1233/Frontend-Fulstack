@@ -1,102 +1,205 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1000;
+  padding: 24px;
 }
 
 .modal {
-  width: 900px;
   background: #fff;
-  border-radius: 8px;
-  padding: 20px;
+  border-radius: 12px;
+  border: 0.5px solid #e5e7eb;
+  width: 100%;
+  max-width: 860px;
+  overflow: hidden;
 }
 
 .header {
   display: flex;
-  height: 40px;
+  align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
-  background-color: #22c55e;
+  padding: 14px 24px;
+  border-bottom: 0.5px solid #e5e7eb;
 }
 
-.backBtn,
-.closeBtn {
-  font-size: medium;
+.backBtn {
   background: none;
   border: none;
+  font-size: 14px;
+  color: #6b7280;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #6b7280;
+  cursor: pointer;
+  line-height: 1;
 }
 
 .content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 30px;
 }
 
-.left, .right {
-  padding: 10px;
+/* LEFT */
+.left {
+  padding: 28px 32px;
+  border-right: 0.5px solid #e5e7eb;
 }
-.row1{
+
+.left h2,
+.right h2 {
+  font-size: 22px;
+  font-weight: 500;
+  margin: 0 0 24px;
+  color: #111827;
+}
+
+.row1 {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  /* flex-wrap: nowrap; */
-  /* margin:8px 0 ; */
-  /* background-color: red; */
- 
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 0.5px solid #e5e7eb;
 }
-.name{
-  display: flex;
-  justify-content: end;
-  width: 250px;
 
-  /* background-color: #22c55e; */
+.avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
 }
+
+.name {
+  font-size: 15px;
+  font-weight: 500;
+  color: #111827;
+}
+
 .row {
   display: flex;
   justify-content: space-between;
-  margin: 12px 0;
-
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 0.5px solid #e5e7eb;
+  font-size: 14px;
 }
 
-.status {
-  display: flex;
-  justify-content: end;
-  margin-top: 20px;
-  background: #22c55e;
-  color: white;
-  padding: 6px 12px;
-  width: fit-content;
-  border-radius: 20px;
+.row label {
+  color: #6b7280;
+}
+
+.row span {
+  color: #111827;
+}
+
+.statusBadge {
+  background: #d1fae5;
+  color: #065f46;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 12px;
+  border-radius: 999px;
+}
+
+/* RIGHT */
+.right {
+  padding: 28px 32px;
 }
 
 .billRow {
   display: flex;
   justify-content: space-between;
-  margin: 10px 0;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 0.5px solid #e5e7eb;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.billRow span:last-child {
+  color: #111827;
 }
 
 .total {
   display: flex;
   justify-content: space-between;
-  font-weight: bold;
-  background: #f3f4ff;
-  padding: 10px;
-  border-radius: 6px;
+  align-items: center;
+  padding: 14px 16px;
+  background: #f3f4f6;
+  border-radius: 8px;
+  margin-top: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #111827;
+}
+
+.total span:last-child {
+  font-size: 18px;
 }
 
 .paymentOptions {
-  margin-top: 20px;
+  margin-top: 24px;
+}
+
+.paymentLabel {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 12px;
+}
+
+.radioOption {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #111827;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.radioOption input[type="radio"] {
+  accent-color: #6366f1;
+  width: 16px;
+  height: 16px;
 }
 
 .cardInput {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 13px;
+  border: 0.5px solid #d1d5db;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.payBtn {
+  margin-top: 24px;
+  width: 100%;
+  padding: 12px;
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.payBtn:hover {
+  background: #4f46e5;
 }
