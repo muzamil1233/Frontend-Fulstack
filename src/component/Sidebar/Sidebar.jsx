@@ -26,7 +26,7 @@ const Sidebar = () => {
 
   const menuItems = [
     { name: "Dashboard", icon: <FaHome />, path: "/home" },
-    { name: "Clothes", icon: <FaTshirt />, path: "/category/men" },
+    { name: "Clothes", icon: <FaTshirt />, path: "/category/Machine" },
     { name: "Users", icon: <FaUsers />, path: "/" },
     { name: "Settings", icon: <FaCog />, path: "/settings" },
   ];
