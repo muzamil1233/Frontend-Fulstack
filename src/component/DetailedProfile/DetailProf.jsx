@@ -184,7 +184,7 @@ const handleEdit = async () => {
 
   setLoading(true);
   try {
-    const response = await fetch(`${BASE_URL}/api/Bag/`, {
+    const response = await fetch(`${BASE_URL}/api/bag/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
