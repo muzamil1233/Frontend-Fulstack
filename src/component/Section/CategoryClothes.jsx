@@ -19,7 +19,7 @@ const CategoryClothes = () => {
     const fetchClothes = async () => {
       try {
         const response = await fetch(
-          `${BASE_URL}/api/cloth/getClothes/catogory/${category}`,
+          `${BASE_URL}/api/cloth/getClothes/category/${category}`,
           {
             headers: {
               "Content-Type": "application/json",
