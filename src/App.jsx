@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 import Login from "./component/Login";
@@ -10,18 +11,12 @@ import AdminDashboard from "./component/AdminDashboard/AdminDashboard";
 import DetailProf from "./component/DetailedProfile/DetailProf";
 import Payment from "./component/Payment/Payment";
 
-
-// 🔐 User Protected Route
+// 🔐 User Protected Route (ONLY for payment or sensitive pages)
 const UserRoute = ({ children }) => {
-  const userId = localStorage.getItem("userId");
+  const token = localStorage.getItem("token");
 
-  if (!userId) {
-    return <Navigate to="/login" replace />;
-  }
-
-  return children;
+  return token ? children : <Navigate to="/login" replace />;
 };
-
 
 // 🔐 Admin Protected Route
 const AdminRoute = ({ children }) => {
@@ -35,7 +30,6 @@ const AdminRoute = ({ children }) => {
   return children;
 };
 
-
 function App() {
   return (
     <Router>
@@ -46,88 +40,76 @@ function App() {
         <Route path="/admin/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
 
-
-        {/* 🔐 User Protected Routes */}
-        <Route 
-          path="/" 
+        {/* 🏠 Public Main Pages */}
+        <Route
+          path="/"
           element={
-            <UserRoute>
-              <MainLayout>
-                <Dashboard />
-              </MainLayout>
-            </UserRoute>
-          } 
+            <MainLayout>
+              <Dashboard />
+            </MainLayout>
+          }
         />
 
-        <Route 
-          path="/home" 
+        <Route
+          path="/home"
           element={
-            <UserRoute>
-              <MainLayout>
-                <Dashboard />
-              </MainLayout>
-            </UserRoute>
-          } 
+            <MainLayout>
+              <Dashboard />
+            </MainLayout>
+          }
         />
 
-        <Route 
-          path="/detailprof/:id" 
+        <Route
+          path="/category/:category"
           element={
-            <UserRoute>
-              <DetailProf />
-            </UserRoute>
-          } 
+            <MainLayout>
+              <CategoryClothes />
+            </MainLayout>
+          }
         />
 
-        <Route 
-          path="/payment/:id" 
-          element={
-            <UserRoute>
-              <Payment />
-            </UserRoute>
-          } 
+        <Route
+          path="/detailprof/:id"
+          element={<DetailProf />}
         />
 
-        <Route 
-          path="/payment" 
+        {/* 🔒 Protected User Route (Payment only) */}
+        <Route
+          path="/payment/:id"
           element={
             <UserRoute>
               <Payment />
             </UserRoute>
-          } 
+          }
         />
 
-        <Route 
-          path="/category/:category" 
+        <Route
+          path="/payment"
           element={
             <UserRoute>
-              <MainLayout>
-                <CategoryClothes />
-              </MainLayout>
+              <Payment />
             </UserRoute>
-          } 
+          }
         />
-
 
         {/* 🔒 Admin Routes */}
-        <Route 
-          path="/admin" 
+        <Route
+          path="/admin"
           element={
             <AdminRoute>
               <AdminDashboard />
             </AdminRoute>
-          } 
+          }
         />
 
-        <Route 
-          path="/admin/edit/:id" 
+        <Route
+          path="/admin/edit/:id"
           element={
             <AdminRoute>
               <Admin />
             </AdminRoute>
-          } 
+          }
         />
-
 
         {/* ❌ Catch all */}
         <Route path="*" element={<Navigate to="/" />} />
@@ -138,3 +120,4 @@ function App() {
 }
 
 export default App;
+

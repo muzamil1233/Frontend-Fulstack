@@ -171,27 +171,30 @@ useEffect(() => {
 
 
 const handleEdit = async () => {
-  if (!selectedColor) {
-    return alert("Please select a color");
-  }
-
   const token = localStorage.getItem("token");
-   console.log("🔑 Token:", token);
 
   if (!token) {
-    return alert("You must be logged in to add items to your bag.");
+    alert("Please login first!");
+    navigate("/login"); // ✅ redirect
+    return;
+  }
+
+  if (!selectedColor) {
+    alert("Please select a color");
+    return;
   }
 
   setLoading(true);
+
   try {
     const response = await fetch(`${BASE_URL}/api/bag/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`, // ✅ userId comes from this
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        productId: product._id,  // ✅ only productId needed in body
+        productId: product._id,
         color: selectedColor,
         quantity: 1,
       }),
@@ -203,15 +206,15 @@ const handleEdit = async () => {
       alert("✅ Item added to your bag!");
       window.dispatchEvent(new Event("cart-updated"));
     } else {
-      alert(`❌ Failed: ${data.message || "Something went wrong"}`);
+      alert(data.message || "Something went wrong");
     }
   } catch (error) {
     console.error("Error adding to bag:", error);
-    alert("❌ Error adding to bag. Please try again.");
   } finally {
     setLoading(false);
   }
 };
+
 
 const handleQuantityChange = async (itemId, delta) => {
   // Find and update UI quantity first
@@ -365,10 +368,18 @@ const handleQuantityChange = async (itemId, delta) => {
             <button className="add-btn" onClick={ handleEdit} disabled={loading}> {loading ? "Adding..." : "Add to Bag"}</button>
          <button
   className="buy-btn"
-  onClick={() => {
-    console.log("Navigating with ID:", product?._id);
-    navigate(`/payment/${product._id}`);
-  }}
+ onClick={() => {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    alert("Please login first!");
+    navigate("/login"); // ✅ redirect
+    return;
+  }
+
+  navigate(`/payment/${product._id}`);
+}}
+
 >
   Buy Now
 </button>
