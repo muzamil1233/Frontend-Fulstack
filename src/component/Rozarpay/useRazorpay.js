@@ -1,9 +1,11 @@
+import { BASE_URL } from "../../api/baseUrl";
+
 const useRazorpay = () => {
 
   const handlePayment = async (amount, userDetails) => {
     try {
       // Step 1: Create order from backend
-      const res = await fetch("http://localhost:8000/api/payment/create-order", {
+      const res = await fetch(`${BASE_URL}/api/payment/create-order`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ amount: amount * 100 }), // convert ₹ to paise
@@ -19,10 +21,10 @@ const useRazorpay = () => {
         name: "Your App Name",
         description: "Payment",
         order_id: order.id,
-
+ 
         // Step 3: After payment success
         handler: async (response) => {
-          const verifyRes = await fetch("http://localhost:8000/api/payment/verify-payment", {
+          const verifyRes = await fetch(`${BASE_URL}/api/payment/verify-payment`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
