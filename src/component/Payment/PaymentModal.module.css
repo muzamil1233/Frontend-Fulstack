@@ -6,7 +6,8 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  padding: 24px;
+  padding: 16px;
+  overflow-y: auto;
 }
 
 .modal {
@@ -16,6 +17,7 @@
   width: 100%;
   max-width: 860px;
   overflow: hidden;
+  margin: auto;
 }
 
 .header {
@@ -46,6 +48,7 @@
   line-height: 1;
 }
 
+/* Two columns on desktop */
 .content {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -202,4 +205,123 @@
 
 .payBtn:hover {
   background: #4f46e5;
+}
+
+/* ─── Tablet (≤768px) ─────────────────────────────── */
+@media (max-width: 768px) {
+  .overlay {
+    padding: 12px;
+    align-items: flex-start;
+  }
+
+  .modal {
+    border-radius: 10px;
+    margin: 12px auto;
+  }
+
+  /* Stack left and right vertically */
+  .content {
+    grid-template-columns: 1fr;
+  }
+
+  .left {
+    padding: 20px 20px;
+    border-right: none;
+    border-bottom: 0.5px solid #e5e7eb;
+  }
+
+  .right {
+    padding: 20px 20px;
+  }
+
+  .left h2,
+  .right h2 {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  .header {
+    padding: 12px 20px;
+  }
+}
+
+/* ─── Mobile (≤480px) ─────────────────────────────── */
+@media (max-width: 480px) {
+  .overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  /* Slide up from bottom on small screens */
+  .modal {
+    border-radius: 16px 16px 0 0;
+    margin: 0;
+    max-height: 95dvh;
+    overflow-y: auto;
+  }
+
+  .header {
+    padding: 12px 16px;
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 1;
+  }
+
+  .left {
+    padding: 16px 16px;
+  }
+
+  .right {
+    padding: 16px 16px;
+  }
+
+  .left h2,
+  .right h2 {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  .row {
+    padding: 11px 0;
+    font-size: 13px;
+  }
+
+  .row1 {
+    padding: 11px 0;
+  }
+
+  .name {
+    font-size: 14px;
+  }
+
+  .billRow {
+    padding: 10px 0;
+    font-size: 13px;
+  }
+
+  .total {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .total span:last-child {
+    font-size: 16px;
+  }
+
+  .paymentOptions {
+    margin-top: 16px;
+  }
+
+  .radioOption {
+    font-size: 13px;
+  }
+
+  .payBtn {
+    margin-top: 16px;
+    padding: 13px;
+    font-size: 14px;
+    /* Make it easy to tap */
+    min-height: 48px;
+  }
 }
