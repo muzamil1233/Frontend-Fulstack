@@ -123,7 +123,7 @@ const DetailProf = () => {
   const [product, setProduct] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
   const[loading, setLoading ] = useState(false)
-   const [cartItems, setCartItems] = useState(0);
+   const [cartItems, setCartItems] = useState([]);
    console.log("cartitem : ",cartItems)
     const [countCart, setCountCart] = useState([]);
     console.log("countcart", countCart)
@@ -148,14 +148,16 @@ const DetailProf = () => {
 useEffect(() => {
   const fetchCart = async () => {
     try {
-      const userId = localStorage.getItem("userId");
+      const token = localStorage.getItem("token");
+      if (!token) return; // no userId needed
 
-      if (!userId) {
-        console.warn("⚠️ User not logged in, skipping cart fetch");
-        return; // ✅ silently stop
-      }
+      const res = await fetch(`${BASE_URL}/api/Bag/getbag`, { // Fix 3 - no /${userId}
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-      const res = await fetch(`${BASE_URL}/api/Bag/getbag/${userId}`);
+      if (!res.ok) return; // guard against HTML error pages
 
       const data = await res.json();
       setCartItems(data.items || []);
@@ -166,6 +168,7 @@ useEffect(() => {
 
   fetchCart();
 }, []);
+
 
 
 
@@ -187,7 +190,7 @@ const handleEdit = async () => {
   setLoading(true);
 
   try {
-    const response = await fetch(`${BASE_URL}/api/bag/`, {
+    const response = await fetch(`${BASE_URL}/api/Bag`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -10,6 +10,8 @@ import Admin from "./component/Admin";
 import AdminDashboard from "./component/AdminDashboard/AdminDashboard";
 import DetailProf from "./component/DetailedProfile/DetailProf";
 import Payment from "./component/Payment/Payment";
+import { useEffect } from "react";
+import { useState } from "react";
 
 // 🔐 User Protected Route (ONLY for payment or sensitive pages)
 const UserRoute = ({ children }) => {
@@ -29,8 +31,38 @@ const AdminRoute = ({ children }) => {
 
   return children;
 };
+  
 
 function App() {
+ const [serverReady, setServerReady] = useState(false);
+
+  useEffect(() => {
+    const wakeServer = async () => {
+      try {
+        await fetch('https://thrift-hub.onrender.com/');
+        console.log('✅ Server awake');
+      } catch (e) {
+        console.log('⚠️ Server might be slow');
+      } finally {
+        setServerReady(true); // render app either way
+      }
+    };
+    wakeServer();
+  }, []);
+
+  if (!serverReady) return (
+    <div style={{ 
+      display: 'flex', 
+      justifyContent: 'center', 
+      alignItems: 'center', 
+      height: '100vh',
+      fontSize: '16px',
+      color: 'gray'
+    }}>
+      Loading...
+    </div>
+  );
+
   return (
     <Router>
       <Routes>
@@ -116,6 +148,7 @@ function App() {
 
       </Routes>
     </Router>
+  
   );
 }
 
