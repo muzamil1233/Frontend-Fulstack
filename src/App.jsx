@@ -12,6 +12,7 @@ import DetailProf from "./component/DetailedProfile/DetailProf";
 import Payment from "./component/Payment/Payment";
 import { useEffect } from "react";
 import { useState } from "react";
+import UserProfile from "./component/UserProfile/UserProfile";
 
 // 🔐 User Protected Route (ONLY for payment or sensitive pages)
 const UserRoute = ({ children }) => {
@@ -71,6 +72,15 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/admin/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+       <Route
+  path="/profile"
+  element={
+    <UserRoute>
+      <UserProfile />
+    </UserRoute>
+  }
+/>
+
 
         {/* 🏠 Public Main Pages */}
         <Route

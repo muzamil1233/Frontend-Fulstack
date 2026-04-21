@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { FaHeart, FaShoppingCart, FaSignOutAlt } from "react-icons/fa";
 import Pagination from "../Pagination";
 import { BASE_URL } from "../../api/baseUrl";
+import CartDrawer from "./CartDrawer";
 
 
 const Topbar = () => {
@@ -24,6 +25,14 @@ const Topbar = () => {
    const [showCart, setShowCart] = useState(false);
    const [cartItems, setCartItems] = useState([]); // store items from backend
   console.log("cartitems:", cartItems)
+
+
+  const handleLogout = () => {
+  localStorage.removeItem("token");
+  localStorage.removeItem("userId");
+  localStorage.removeItem("role");
+  navigate("/login");
+};
 
 
 
@@ -62,23 +71,12 @@ const handleCartClick = async () => {
   setShowCart(!showCart);
 
   if (!showCart) {
-    const userId = localStorage.getItem("userId");
-    console.log("🆔 UserID from localStorage:", userId);
-
-    if (!userId) {
-      console.warn("❌ No userId found in localStorage");
-      return;
-    }
-
     try {
-      const response = await fetch(
-  `${BASE_URL}/api/Bag/getbag/${userId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
+      const response = await fetch(`${BASE_URL}/api/Bag/getbag`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
 
       const data = await response.json();
       console.log("Bag response:", data);
@@ -203,113 +201,19 @@ const handleQuantityChange = async (itemId, delta) => {
 
     {/* Cart dropdown as a card */}
   {/* Cart dropdown as a card */}
-{showCart && (
-  <div
-    style={{
-      position: "absolute",
-      top: "35px",
-      right: "0",
-      width: "300px",
-      backgroundColor: "#fff",
-      borderRadius: "8px",
-      boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-      padding: "15px",
-      zIndex: 100,
-    }}
-  >
-    {cartItems.length === 0 ? (
-      <p style={{ textAlign: "center", color: "#555" }}>Your bag is empty</p>
-    ) : (
-      <>
-        {/** Calculate paginated items **/}
-        {cartItems
-          .slice((currentPage - 1) * productsPerPage, currentPage * productsPerPage)
-          .map((item) => (
-            <div
-              key={item._id}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginBottom: "15px",
-                borderBottom: "1px solid #eee",
-                paddingBottom: "10px",
-              }}
-            >
-              {item.productId.image && (
-                <img
-                  src={item.productId.image}
-                  alt={item.productId.name}
-                  style={{ width: "50px", height: "50px", objectFit: "cover", marginRight: "10px", borderRadius: "4px" }}
-                />
-              )}
-              <div style={{ flex: 1 }}>
-                <p style={{ margin: 0, fontWeight: "bold" }}>{item.productId.name}</p>
-                <p style={{ margin: 0, fontSize: "12px", color: "#888" }}>Qty: {item.quantity}</p>
-              </div>
-              <p style={{ margin: 0, fontWeight: "bold" }}>₹{item.productId.price}</p>
-            <button
-    onClick={() => handleQuantityChange(item._id, -1)}
-    style={{ padding: "3px 8px", borderRadius: "4px" }}
-  >
-    -
-  </button>
-  <span>{item.quantity}</span>
-  <button
-    onClick={() => handleQuantityChange(item._id, 1)}
-    style={{ padding: "3px 8px", borderRadius: "4px" }}
-  >
-    +
-  </button>
-            </div>
-          ))}
-
-        {/** Pagination controls **/}
-        {cartItems.length > productsPerPage && (
-          <div style={{ display: "flex", justifyContent: "center", marginTop: "10px", gap: "5px" }}>
-            {Array.from({ length: Math.ceil(cartItems.length / productsPerPage) }).map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentPage(index + 1)}
-                style={{
-                  padding: "5px 8px",
-                  borderRadius: "4px",
-                  border: currentPage === index + 1 ? "1px solid #007bff" : "1px solid #ccc",
-                  backgroundColor: currentPage === index + 1 ? "#007bff" : "#fff",
-                  color: currentPage === index + 1 ? "#fff" : "#000",
-                  cursor: "pointer",
-                  fontSize: "12px",
-                }}
-              >
-                {index + 1}
-              </button>
-            ))}
-          </div>
-        )}
-
-        <button
-          style={{
-            width: "100%",
-            padding: "10px",
-            backgroundColor: "#007bff",
-            color: "#fff",
-            border: "none",
-            borderRadius: "6px",
-            cursor: "pointer",
-            fontWeight: "bold",
-            marginTop: "10px",
-          }}
-        >
-          Checkout
-        </button>
-      </>
-    )}
-  </div>
-)}
+<CartDrawer
+  isOpen={showCart}
+  onClose={() => setShowCart(false)}
+  cartItems={cartItems}
+  setCartItems={setCartItems}
+  countCart={countCart}
+  setCountCart={setCountCart}
+/>
 
    
   </div>
 
-  <FaSignOutAlt className="icon" title="Logout" style={{ cursor: "pointer" }} />
+  <FaSignOutAlt className="icon" title="Logout" style={{ cursor: "pointer" }}  onClick={handleLogout} />
 </div>
 
 

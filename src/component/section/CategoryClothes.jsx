@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./categoryClothes.css"; // import CSS
 import { BASE_URL } from "../../api/baseUrl";
@@ -16,38 +16,40 @@ const CategoryClothes = () => {
   const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
-    const fetchClothes = async () => {
-      try {
-        const response = await fetch(
-          `${BASE_URL}/api/cloth/getClothes/category/${category}`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
+  const fetchClothes = async () => {
+    try {
+      const url = category === "All"
+        ? `${BASE_URL}/api/cloth/getClothes`
+        : `${BASE_URL}/api/cloth/getClothes/category/${category}`;
 
-        const data = await response.json();
+      const response = await fetch(url, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
 
-        if (!response.ok) {
-          setErrorMsg(data.msg);
-          setClothes([]);
-        } else {
-          setClothes(data);
-          setErrorMsg("");
-        }
-      } catch (error) {
-        console.error("Error fetching clothes:", error);
-        setErrorMsg("Server error");
+      const data = await response.json();
+
+      if (!response.ok) {
+        setErrorMsg(data.msg);
         setClothes([]);
-      } finally {
-        setLoading(false);
+      } else {
+        setClothes(data);
+        setErrorMsg("");
       }
-    };
+    } catch (error) {
+      console.error("Error fetching clothes:", error);
+      setErrorMsg("Server error");
+      setClothes([]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchClothes();
-  }, [category]);
+  fetchClothes();
+}, [category]);
+  
 
   if (loading) return <p>Loading {category} clothes...</p>;
 

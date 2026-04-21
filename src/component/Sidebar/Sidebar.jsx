@@ -8,6 +8,7 @@ import {
   FaBars,
   FaChevronRight,
   FaChevronLeft,
+  FaSignOutAlt,
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
@@ -23,12 +24,13 @@ const Sidebar = () => {
       setIsCollapsed(!isCollapsed);
     }
   };
+ 
 
   const menuItems = [
     { name: "Dashboard", icon: <FaHome />, path: "/home" },
-    { name: "Clothes", icon: <FaTshirt />, path: "/category/Machine" },
-    { name: "Users", icon: <FaUsers />, path: "/" },
-    { name: "Settings", icon: <FaCog />, path: "/settings" },
+    { name: "Clothes", icon: <FaTshirt />, path: "/category/All" },
+   { name: "Users", icon: <FaUsers />, path: "/profile" },
+   { name: "Sign Out", icon: <FaSignOutAlt />, path: "/login" },
   ];
 
   return (
