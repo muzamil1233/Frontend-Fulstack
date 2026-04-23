@@ -1,125 +1,116 @@
 import React, { useState } from "react";
 import "../component/Login.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { BASE_URL } from "../api/baseUrl";
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Determine role from URL — /admin/login → admin, else → user
+  const isAdmin = location.pathname.startsWith("/admin");
+  const role = isAdmin ? "admin" : "user";
+
   const [formData, setFormData] = useState({ email: "", password: "" });
-  const [role, setRole] = useState("user"); // Default role
   const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
- const handleSubmit = async (e) => {
-  e.preventDefault();
-  setMessage("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setMessage("");
 
-  try {
-    const endpoint =
-      role === "admin"
+    try {
+      const endpoint = isAdmin
         ? `${BASE_URL}/api/admin/signIn`
         : `${BASE_URL}/api/user/login`;
 
-    const res = await fetch(endpoint, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    });
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-    const data = await res.json();
-    console.log("🧩 Login response:", data); // 👈 Check what backend sends
+      const data = await res.json();
+      console.log("🧩 Login response:", data);
 
-    if (res.ok) {
-      // Always store the token
-      // if (data.token) localStorage.setItem("token", data.token);
-      if (data.token) localStorage.setItem("token", data.token);
-localStorage.setItem("role", role); // ✅ save role
+      if (res.ok) {
+        if (data.token) localStorage.setItem("token", data.token);
+        localStorage.setItem("role", role);
 
-      // Handle both possible user id formats
-      // ✅ Always store userId directly from backend
-if (data.userId) {
-  localStorage.setItem("userId", data.userId);
-  console.log("✅ Stored userId:", data.userId);
-} else {
-  console.warn("⚠️ userId missing in response");
-}
+        if (data.userId) {
+          localStorage.setItem("userId", data.userId);
+          console.log("✅ Stored userId:", data.userId);
+        } else {
+          console.warn("⚠️ userId missing in response");
+        }
 
-
-      // Redirect
-      if (role === "admin") navigate("/admin");
-      else navigate("/home");
-    } else {
-      setMessage(data.msg || "Login failed!");
+        if (isAdmin) navigate("/admin");
+        else navigate("/home");
+      } else {
+        setMessage(data.msg || "Login failed!");
+      }
+    } catch (error) {
+      console.error("❌ Login error:", error);
+      setMessage("Error connecting to server");
     }
-  } catch (error) {
-    console.error("❌ Login error:", error);
-    setMessage("Error connecting to server");
-  }
-};
-
+  };
 
   return (
     <div className="outer">
- <div className="main">
-      <h1>RB TILLA DESIGNER  </h1>
-      <h3>Enter your login credentials</h3>
+      <div className="main">
+        <h1>RB TILLA DESIGNER</h1>
 
-      <form id="loginForm" onSubmit={handleSubmit}>
-         <div className="role">
-          <label htmlFor="role">Login as:</label>
-        <select
-          id="role"
-          value={role}
-          onChange={(e) => setRole(e.target.value)}
-        >
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-        </select>
-         </div>
-     
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Enter your email"
-          required
-          autoComplete="username"
-          value={formData.email}
-          onChange={handleChange}
-        />
+        {/* Dynamic heading based on role */}
+        <h3>{isAdmin ? "Admin Login" : "User Login"}</h3>
+        <p>Enter your {isAdmin ? "admin" : ""} login credentials</p>
 
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Enter your password"
-          required
-          autoComplete="current-password"
-          value={formData.password}
-          onChange={handleChange}
-        />
+        <form id="loginForm" onSubmit={handleSubmit}>
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+            autoComplete="username"
+            value={formData.email}
+            onChange={handleChange}
+          />
 
-        <div className="wrap">
-          <button  className = "submit" type="submit">Submit</button>
-        </div>
-      </form>
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            required
+            autoComplete="current-password"
+            value={formData.password}
+            onChange={handleChange}
+          />
 
-      <p>
-        Not registered?{" "}
-        <Link to="/signup" style={{ textDecoration: "none", color: "blue" }}>
-          Create an account
-        </Link>
-      </p>
+          <div className="wrap">
+            <button className="submit" type="submit">Submit</button>
+          </div>
+        </form>
 
-      {message && <p id="message">{message}</p>}
+        {/* Signup link — redirects to correct signup page based on role */}
+        <p>
+          Not registered?{" "}
+          <Link
+            to={isAdmin ? "/admin/signup" : "/signup"}
+            style={{ textDecoration: "none", color: "blue" }}
+          >
+            Create an account
+          </Link>
+        </p>
+
+        {message && <p id="message">{message}</p>}
+      </div>
     </div>
-    </div>
-   
   );
 };
 

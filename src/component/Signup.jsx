@@ -1,40 +1,41 @@
 import React, { useState } from "react";
 import "../component/Signup.css";
 import { BASE_URL } from "../api/baseUrl";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Signup = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
-  const [role, setRole] = useState("user"); // default role
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Determine role from URL — /admin/signup → admin, else → user
+  const isAdmin = location.pathname.startsWith("/admin");
+  const role = isAdmin ? "admin" : "user";
+
+  const [formData, setFormData] = useState({ name: "", email: "", password: "" });
   const [message, setMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      // Select endpoint based on chosen role
-      const endpoint =
-        role === "admin"
-          ? `${BASE_URL}/api/admin/signup`
-          : `${BASE_URL}/api/user/signup`;
+      const endpoint = isAdmin
+        ? `${BASE_URL}/api/admin/signup`
+        : `${BASE_URL}/api/user/signup`;
+
+      console.log(endpoint);
 
       const res = await fetch(endpoint, {
-        
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...formData, role }),
       });
-          console.log(endpoint)
+
       const data = await res.json();
 
       if (res.ok) {
         setMessage("Signup successful! Redirecting...");
-        // redirect to login
         setTimeout(() => {
-          window.location.href = "/";
+          navigate(isAdmin ? "/admin/login" : "/login");
         }, 1500);
       } else {
         setMessage(data.msg || "Signup failed!");
@@ -47,75 +48,58 @@ const Signup = () => {
 
   return (
     <div className="outer">
-       <div className="container">
-      <h2>Signup Form</h2>
+      <div className="container">
+        <h2>{isAdmin ? "Admin Signup" : "User Signup"}</h2>
 
-      <form onSubmit={handleSubmit}>
-        <div className="form-role">
-          <label>Role</label>
-          <select
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-            required
-          >
-            <option value="user">User</option>
-            <option value="admin">Admin</option>
-          </select>
-        </div>
+        <form onSubmit={handleSubmit}>
+          {/* No role dropdown — role is determined by URL */}
 
-        <div className="form-group">
-          <label>Username</label>
-          <input
-            type="text"
-            name="name"
-            placeholder="Enter your name"
-            required
-            value={formData.name}
-            onChange={(e) =>
-              setFormData({ ...formData, name: e.target.value })
-            }
-          />
-        </div>
-
-        <div className="form-group">
-          <label>Email</label>
-          <input
-            type="email"
-            name="email"
-            placeholder="Enter your email"
-            required
-            value={formData.email}
-            onChange={(e) =>
-              setFormData({ ...formData, email: e.target.value })
-            }
-          />
-        </div>
-
-        <div className="form-group">
-          <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            placeholder="Enter your password"
-            required
-            value={formData.password}
-            onChange={(e) =>
-              setFormData({ ...formData, password: e.target.value })
-            }
-          />
-          <div className="password-hint">
-            Password must be at least 8 characters long and include at least
-            one uppercase, one lowercase, one number, and one special character.
+          <div className="form-group">
+            <label>Username</label>
+            <input
+              type="text"
+              name="name"
+              placeholder="Enter your name"
+              required
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            />
           </div>
-        </div>
 
-        <button className="signup" type="submit">Signup</button>
-      </form>
+          <div className="form-group">
+            <label>Email</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            />
+          </div>
 
-      <p id="message">{message}</p>
+          <div className="form-group">
+            <label>Password</label>
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              required
+              value={formData.password}
+              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+            />
+            <div className="password-hint">
+              Password must be at least 8 characters long and include at least
+              one uppercase, one lowercase, one number, and one special character.
+            </div>
+          </div>
+
+          <button className="signup" type="submit">Signup</button>
+        </form>
+
+        {message && <p id="message">{message}</p>}
+      </div>
     </div>
-    </div>
-   
   );
 };
 
