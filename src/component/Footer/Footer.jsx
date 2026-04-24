@@ -79,21 +79,17 @@ const Footer = () => {
                 className="social-icon wa" aria-label="WhatsApp">
                 <FaWhatsapp />
               </a>
-              <a href="https://instagram.com/YOUR_HANDLE" target="_blank"
+              <a href="https://www.instagram.com/rb_tila_designer?igsh=ZHRtNjVsbW4yMWt2" target="_blank"
                 rel="noopener noreferrer" className="social-icon ig" aria-label="Instagram">
                 <FaInstagram />
               </a>
-              <a href="https://facebook.com/YOUR_PAGE" target="_blank"
+              <a href="https://www.facebook.com/profile.php?id=61586482534481" target="_blank"
                 rel="noopener noreferrer" className="social-icon fb" aria-label="Facebook">
                 <FaFacebook />
               </a>
-              <a href="https://youtube.com/YOUR_CHANNEL" target="_blank"
+              <a href="https://youtube.com/@rbdesigner_1?si=ZAwEvsm-2Rahku-F" target="_blank"
                 rel="noopener noreferrer" className="social-icon yt" aria-label="YouTube">
                 <FaYoutube />
-              </a>
-              <a href="https://tiktok.com/@YOUR_HANDLE" target="_blank"
-                rel="noopener noreferrer" className="social-icon tt" aria-label="TikTok">
-                <FaTiktok />
               </a>
             </div>
           </div>
@@ -173,8 +169,8 @@ const Footer = () => {
           <p>© 2025 Tulos Fashion. All Rights Reserved.</p>
           <div className="footer-bottom-social">
             <a href={whatsappLink} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><FaWhatsapp /></a>
-            <a href="https://instagram.com/YOUR_HANDLE" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><FaInstagram /></a>
-            <a href="https://facebook.com/YOUR_PAGE" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><FaFacebook /></a>
+            <a href="https://www.instagram.com/rb_tila_designer?igsh=ZHRtNjVsbW4yMWt2" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><FaInstagram /></a>
+            <a href="https://www.facebook.com/profile.php?id=61586482534481" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><FaFacebook /></a>
           </div>
         </div>
       </footer>
